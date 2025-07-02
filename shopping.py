@@ -86,6 +86,9 @@ def load_data(filename):
             data_labels[0].append(data)
             data_labels[1] = int(features[15])
 
+        return data_labels
+
+
 
 def get_month(month : str):
     return {
@@ -93,11 +96,13 @@ def get_month(month : str):
         "Jul": 6, "Aug": 7, "Sep": 8, "Oct": 9, "Nov": 10, "Dec": 11 }.get(month)
 
 def train_model(evidence, labels):
-    """
-    Given a list of evidence lists and a list of labels, return a
-    fitted k-nearest neighbor model (k=1) trained on the data.
-    """
-    raise NotImplementedError
+
+    neigh = KNeighborsClassifier(n_neighbors=1)
+    neigh.fit(evidence, labels)
+
+    print(f"neigh: {neigh}")
+
+    return neigh
 
 def evaluate(labels, predictions):
     """
